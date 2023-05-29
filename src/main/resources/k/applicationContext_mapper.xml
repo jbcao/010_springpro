@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--读取属性文件jdbc.peoperties-->
+    <context:property-placeholder location="k/jdbc.properties"></context:property-placeholder>
+    <!--创建数德鲁伊据源-->
+    <bean id="database" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+    <!--配置SqlSessionFactoryBean类-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--配置数据源-->
+        <property name="dataSource" ref="database"></property>
+        <!--配置mybatis 核心配置文件sqlmapconfig-->
+        <property name="configLocation" value="k/SqlMapConfig.xml"></property>
+        <!--注册实体类的别名-->
+        <property name="typeAliasesPackage" value="k_sm.pojo"></property>
+    </bean>
+    <!--配置mapper.xml类-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="k_sm.mapper"></property>
+    </bean>
+</beans>

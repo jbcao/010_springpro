@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--&lt;!&ndash;创建业务对象&ndash;&gt;-->
+    <!--<bean id="someServiceImpl" class="j_aspectj.s01.SomeServiceImpl"></bean>-->
+    <!--&lt;!&ndash;创建切面的对象&ndash;&gt;-->
+    <!--<bean id="myAspect" class="j_aspectj.s01.MyAspect"></bean>-->
+    <!--包扫描-->
+    <context:component-scan base-package="j_aspectj.s01"></context:component-scan>
+    <!--绑定业务和切面-->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+</beans>

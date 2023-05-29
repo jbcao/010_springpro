@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--创建业务对象-->
+    <bean id ="bookServiceTarget" class="i_spring_aop.service.impl.BookServiceImpl"></bean>
+    <!--创建切面的对象-->
+    <bean id="logAdvice" class="i_spring_aop.advice.LogAdvice"></bean>
+
+    <!--绑定业务和切面-->
+    <bean id="bookService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--配置业务接口-->
+        <property name="interfaces" value="i_spring_aop.service.BookService"></property>
+        <!--配置切面
+        切面可以配置多个-->
+        <property name="interceptorNames">
+            <list>
+                <value>logAdvice</value>
+            </list>
+        </property>
+        <!--织入-->
+        <property name="target" ref="bookServiceTarget"></property>
+    </bean>
+</beans>

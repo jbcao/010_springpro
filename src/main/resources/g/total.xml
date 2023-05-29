@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--单个导入-->
+    <!--<import resource="applicationContext_mapper.xml"></import>-->
+    <!--<import resource="applicationContext_service.xml"></import>-->
+    <!--<import resource="applicationContext_controller.xml"></import>-->
+    <!--批量导入-->
+    <import resource="applicationContext_*.xml"></import>
+</beans>

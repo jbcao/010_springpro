@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--赋值-->
+    <bean id="school" class="b_xml_setter.pojo.School">
+        <property name="name" value="清华"></property>
+        <property name="address" value="北京"></property>
+    </bean>
+    <!--这是正经的依赖注入-->
+    <!--顺序不影响-->
+    <bean id="stu" class="b_xml_setter.pojo.Student" autowire="byName">
+        <property name="name" value="张三"></property>
+        <property name="age" value="12"></property>
+        <!--<property name="school" ref="school"></property>-->
+    </bean>
+    <!--创建各种对象-->
+    <!--创建数据访问层的对象-->
+    <bean id="uMapper" class="d_mvc_xml.c_mvc_common.dao.UsersMapperImpl"></bean>
+    <!--创建业务逻辑层的对象-->
+    <bean id="uService" class="d_mvc_xml.c_mvc_common.service.impl.UsersServiceImpl">
+        <property name="usersMapper" ref="uMapper"></property>
+    </bean>
+    <!--创建界面层的对象-->
+    <bean id="uController" class="d_mvc_xml.c_mvc_common.controller.UsersController">
+        <property name="usersService" ref="uService"></property>
+    </bean>
+</beans>
